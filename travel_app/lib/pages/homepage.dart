@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  // bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
@@ -130,7 +131,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                         return PlacePage(destination: destinationPlace);
+                        return PlacePage(destination: destinationPlace);
                       }));
                     },
                     child: Container(
@@ -174,7 +175,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                       return PlacePage(destination: destinationPlace);
+                        return PlacePage(destination: destinationPlace);
                       }));
                     },
                     child: Container(
@@ -257,7 +258,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                           return PlacePage(destination: destinationPlace);
+                            return PlacePage(destination: destinationPlace);
                           }));
                         },
                         child: Container(
@@ -297,56 +298,76 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Column(
-                                            children: [
-                                              Icon(
-                                                Icons.call,
-                                                color: Colors.pink,
-                                                size: 26,
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Call',
-                                                style: TextStyle(fontSize: 12),
-                                              )
-                                            ],
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 5),
+                                            child: Column(
+                                              children: [
+                                                Icon(
+                                                  Icons.call,
+                                                  color: Colors.pink,
+                                                  size: 26,
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                Text(
+                                                  'Call',
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 16,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 5),
+                                            child: Column(
+                                              children: [
+                                                Icon(
+                                                  Icons.share,
+                                                  color: Colors.pink,
+                                                  size: 26,
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                Text(
+                                                  'Share',
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                           SizedBox(
                                             width: 16,
                                           ),
                                           Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
-                                              Icon(
-                                                Icons.near_me,
-                                                color: Colors.pink,
-                                                size: 26,
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
+                                              IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      destinationPlace
+                                                              .isFavorite =
+                                                          !destinationPlace
+                                                              .isFavorite;
+                                                    });
+                                                  },
+                                                  icon: Icon(
+                                                    destinationPlace.isFavorite
+                                                        ? Icons.favorite
+                                                        : Icons.favorite_border,
+                                                    color: Colors.pink,
+                                                    size: 26,
+                                                  )),
                                               Text(
-                                                'Route',
-                                                style: TextStyle(fontSize: 12),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            width: 16,
-                                          ),
-                                          Column(
-                                            children: [
-                                              Icon(
-                                                Icons.share,
-                                                color: Colors.pink,
-                                                size: 26,
-                                              ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                'Share',
+                                                'Favorite',
                                                 style: TextStyle(fontSize: 12),
                                               )
                                             ],
@@ -368,6 +389,5 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         )
       ],
     );
-    
   }
 }
